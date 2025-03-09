@@ -1,0 +1,21 @@
+name: Daily GitHub Commit
+
+on:
+  schedule:
+    - cron: "0 12 * * *"  # Runs every day at 12:00 PM UTC
+
+jobs:
+  commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Make a commit
+        run: |
+          date >> activity.txt
+          git config --global user.name "Your GitHub Username"
+          git config --global user.email "your-email@example.com"
+          git add activity.txt
+          git commit -m "Automated commit $(date)"
+          git push
