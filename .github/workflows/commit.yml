@@ -37,4 +37,4 @@ jobs:
           git pull --rebase origin main
           
           # Authenticate and push securely
-          git push https://x-access-token:${GH_TOKEN}@github.com/Gautam-Kundalia/GitHub-Activity-Automation.git main
+          git push https://${GH_TOKEN}@github.com/Gautam-Kundalia/GitHub-Activity-Automation.git main
