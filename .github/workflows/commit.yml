@@ -25,6 +25,8 @@ jobs:
           echo "Run date: $(date)" >> activity.txt
 
       - name: Commit and Push
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}  # Ensure 'GH_TOKEN' is added in repository secrets
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions@github.com"
@@ -34,5 +36,5 @@ jobs:
           # Pull latest changes to prevent push rejection
           git pull --rebase origin main
           
-          # Push the changes after syncing
-          git push origin main
+          # Authenticate and push securely
+          git push https://x-access-token:${GH_TOKEN}@github.com/Gautam-Kundalia/GitHub-Activity-Automation.git main
