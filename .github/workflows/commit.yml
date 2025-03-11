@@ -13,12 +13,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          persist-credentials: false  # Disable default GitHub authentication
+          token: ${{ secrets.GH_TOKEN }}  # Use the token for authentication
 
       - name: Set up Git
         run: |
-          git config --global user.name "Gautam-Kundalia"
-          git config --global user.email "gautamkundalia01@gmail.com" # Replace with your GitHub email
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: Make changes
         run: |
@@ -26,10 +26,7 @@ jobs:
           date >> activity.txt
 
       - name: Commit and Push
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           git add activity.txt
           git commit -m "Automated commit $(date)" || echo "No changes to commit"
-          git remote set-url origin https://Gautam-Kundalia:${{ secrets.GH_TOKEN }}@github.com/Gautam-Kundalia/GitHub-Activity-Automation.git
           git push origin main
