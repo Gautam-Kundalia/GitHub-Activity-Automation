@@ -25,11 +25,14 @@ jobs:
           echo "Run date: $(date)" >> activity.txt
 
       - name: Commit and Push
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions@github.com"
           git add activity.txt
           git commit -m "Automated commit $(date)" || echo "No changes to commit"
+          
+          # Pull latest changes to prevent push rejection
+          git pull --rebase origin main
+          
+          # Push the changes after syncing
           git push origin main
