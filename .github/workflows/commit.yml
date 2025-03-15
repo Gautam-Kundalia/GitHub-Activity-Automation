@@ -28,8 +28,8 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}  # Ensure 'GH_TOKEN' is added in repository secrets
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions@github.com"
+          git config --global user.name "Gautam-Kundalia"
+          git config --global user.email "gautamkundalia01@gmail.com"
           git add activity.txt
           git commit -m "Automated commit $(date)" || echo "No changes to commit"
           
